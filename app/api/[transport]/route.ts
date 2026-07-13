@@ -1,7 +1,11 @@
 import { createMcpHandler } from "mcp-handler";
 
+console.log("🚀 route.ts loaded");
+
 const handler = createMcpHandler(
   (server) => {
+    console.log("🚀 MCP handler initialized");
+
     server.registerTool(
       "health_check",
       {
@@ -9,14 +13,18 @@ const handler = createMcpHandler(
         description: "Checks that the MCP server is alive.",
         inputSchema: {},
       },
-      async () => ({
-        content: [
-          {
-            type: "text",
-            text: "MCP server is alive 🚀",
-          },
-        ],
-      })
+      async () => {
+        console.log("✅ health_check tool called");
+
+        return {
+          content: [
+            {
+              type: "text",
+              text: "MCP server is alive 🚀",
+            },
+          ],
+        };
+      }
     );
   },
   {},
